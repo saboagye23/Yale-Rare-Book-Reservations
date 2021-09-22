@@ -1,4 +1,5 @@
 const express = require('express');
+const exphbs  = require('express-handlebars');
 const routes = require('./routes');
 const path = require('path')
 
@@ -7,6 +8,10 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// view handler
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // public assets directory
 app.use(express.static(path.join(__dirname, 'public'), {extensions: ['html'], index: false}));
