@@ -1,5 +1,10 @@
 const router = require('express').Router();
+const bookRoutes = require('./book-routes');
+const userRoutes = require('./user-routes');
+const reservationRoutes = require('./reservation-routes');
 
-// TODO: Add api routes
+router.use('/books', bookRoutes);
+router.use('/users', userRoutes);
+router.use('/reservations', reservationRoutes);
 
 module.exports = router;

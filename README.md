@@ -16,5 +16,25 @@ This is to provide detail explanation of the project structure using MVC pattern
 1. This is a handlebar ui element builder. [Refer to](https://www.npmjs.com/package/express-handlebars) for more details.
 
 ### Public Asset - public/assets
-1. Contains all css, images and javascript used on the client side.
+Contains all css, images and javascript used on the client side.
+
 Example of how to include in html `<script src='/assets/login.js'></script>`
+
+## API Endpoints
+List of api endpoints used by service. 
+1. /api/v1/books [GET, POST]
+2. /api/v1/books/:id [GET, PUT]
+3. /api/v1/reservations [GET, POST]
+4. /api/v1/reservations/:id [GET, PUT, DELETE]
+5. /api/v1/users [POST]
+6. /api/v1/users/login [POST]
+
+## Database
+Postgres database is the choice of db for the project.
+
+## Login Session
+When a user make a request to /api/users/login, user id will be saved in session.
+If the user make request reserve a book, the user's info in session will be use.
+
+### Session NPM
+[```npm i express-session```](https://www.npmjs.com/package/express-session)
