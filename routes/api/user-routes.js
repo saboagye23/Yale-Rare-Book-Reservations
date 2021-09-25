@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt'); 
-const { User, Reservation, Book } = require('../../models');
-const saltRounds = 10;
+const { User } = require('../../models');
+const saltRounds = parseInt(process.env.BR_PASSOWRD_SALT_ROUNDS);
 
 // The `/api/v1/users` endpoint
 
@@ -15,6 +15,10 @@ router.post('/login', (req, res) => {
         attributes: ['id', 'email', 'full_name', 'password_hash']
     })
     .then(userData => {
+        if(!userData){
+            res.json({message: 'Username or Passowrd is wrong! Try creating a new account'})
+            return
+        }
         bcrypt.compare(req.body.password, userData.password_hash, function(err, result) {
             if (result == true){
                 req.session.viewer = userData
@@ -63,8 +67,6 @@ router.post('/', (req, res) => {
 
 // create a book
 router.put('/:id', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   User.update({full_name: req.body.full_name}, {
     where:{
       id: req.params.id

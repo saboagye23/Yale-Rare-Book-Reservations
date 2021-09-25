@@ -31,8 +31,8 @@ Book.init(
           isUrl: true,
         }
       },
-      image_links: {
-        type: DataTypes.JSONB,
+      image_link: {
+        type: DataTypes.STRING,
         allowNull: true
       },
       stock: {
@@ -47,12 +47,8 @@ Book.init(
         type: DataTypes.DATE,
         allowNull: true
       },
-      authors:{
-        type: DataTypes.JSONB,
-        allowNull: true
-      },
-      categories:{
-        type: DataTypes.JSONB,
+      author:{
+        type: DataTypes.STRING,
         allowNull: true
       }
     },

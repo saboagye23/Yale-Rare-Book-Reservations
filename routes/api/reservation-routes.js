@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       include:[
           {
               model: Book,
-              attributes: ['id', 'title', 'description', 'url', 'image_links']
+              attributes: ['id', 'title', 'description', 'url', 'image_link', 'author']
           },{
               model: User,
               attributes:['id', 'full_name']
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// get all reservations
+// get all user reservations
 router.get('/user', (req, res) => {
     if(!req.session.viewer){
         console.log('No login user found');
@@ -41,7 +41,7 @@ router.get('/user', (req, res) => {
       include:[
           {
               model: Book,
-              attributes: ['id', 'title', 'description', 'url', 'image_links']
+              attributes: ['id', 'title', 'description', 'url', 'image_link', 'author']
           },{
               model: User,
               attributes:['id', 'full_name']
@@ -55,7 +55,7 @@ router.get('/user', (req, res) => {
     });
 });
 
-// create a book reservation
+// reserve a book for a user
 /**
     {
         book_id: 1,
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
     }
 
     req.body.user_id=req.session.viewer.id
-    
+
     Reservation.create(req.body)
     .then(reservationData => res.json(reservationData))
     .catch(err => {

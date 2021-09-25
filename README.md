@@ -30,7 +30,7 @@ List of api endpoints used by service.
 6. /api/v1/users/login [POST]
 
 ## Database
-Postgres database is the choice of db for the project.
+MySQL database is the choice of db for the project.
 
 ## Login Session
 When a user make a request to /api/users/login, user id will be saved in session.
@@ -38,3 +38,13 @@ If the user make request reserve a book, the user's info in session will be use.
 
 ### Session NPM
 [```npm i express-session```](https://www.npmjs.com/package/express-session)
+
+## Application Environment Variables
+These are required to be set for application to run
+Add your database user and password
+```
+export BR_DB_USER=
+export BR_DB_PW=
+export BR_DB_NAME=book_reservation_db
+export BR_PASSOWRD_SALT_ROUNDS=10
+```
