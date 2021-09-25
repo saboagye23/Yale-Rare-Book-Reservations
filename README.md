@@ -37,7 +37,7 @@ When a user make a request to /api/users/login, user id will be saved in session
 If the user make request reserve a book, the user's info in session will be use.
 
 ### Session NPM
-[```npm i express-session```](https://www.npmjs.com/package/express-session)
+[`npm i express-session`](https://www.npmjs.com/package/express-session)
 
 ## Application Environment Variables
 These are required to be set for application to run
@@ -48,3 +48,14 @@ export BR_DB_PW=
 export BR_DB_NAME=book_reservation_db
 export BR_PASSOWRD_SALT_ROUNDS=10
 ```
+
+## Deploying to Heroku
+Install the Heroku CLI
+Download and install the Heroku CLI.
+
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+
+1. `heroku login`
+2. `heroku git:remote -a yale-rare-book-reservation`
+3. `git checkout master`
+4. `git push heroku master`
