@@ -46,6 +46,7 @@ Add your database user and password
 export BR_DB_USER=
 export BR_DB_PW=
 export BR_DB_NAME=book_reservation_db
+export BR_DB_HOST=localhost
 export BR_PASSOWRD_SALT_ROUNDS=10
 ```
 
@@ -59,3 +60,5 @@ If you haven't already, log in to your Heroku account and follow the prompts to 
 2. `heroku git:remote -a yale-rare-book-reservation`
 3. `git checkout master`
 4. `git push heroku master`
+
+[Heroku URL](https://yale-rare-book-reservation.herokuapp.com)
