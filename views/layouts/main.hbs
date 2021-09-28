@@ -6,13 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="/assets/styles.css" >
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Reserve A Book</title>
 </head>
 <body>
     <nav class="navbar  navbar-expand-lg">
         <div class="container">
-            <a class="nav-brand" href="/">Reserve A Book</a> 
+            <a class="nav-brand" href="/"><i class="fas fa-book"></i> Reserve A Book</a>
+                
+                <ul class="navbar-nav">
+                    {{#if (isLogin viewer)}}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/account/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/signup">SignUp</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/logout">Logout</a>
+                        </li>
+                    {{/if}}
+                </ul> 
              {{>search}} 
         </div>
     </nav>
@@ -24,7 +40,6 @@
             {{{body}}}
         </div> 
     </main> 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

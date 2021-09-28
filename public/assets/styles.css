@@ -3,7 +3,8 @@ nav{
     background-color: rgb(185, 233, 240);
 }
 
-a.nav-brand, a.nav-brand:visited{
+a.nav-brand, a.nav-brand:visited,
+.nav-link, .nav-link:visited{
     text-decoration: none;
     color: #000;
 }
@@ -12,6 +13,37 @@ a.nav-brand, a.nav-brand:visited{
 .sidebar{
     width: 95%;
     margin: auto;
+}
+.card-title{
+    text-overflow: ellipsis;
+    height: 50px;
+    overflow: hidden;
+    color: #000;
+}
+
+.card .card-text{
+    text-overflow: ellipsis;
+    height: 128px;
+    overflow: hidden;
+    line-height: 18px;
+    font-size: 14px;
+    color: #000;
+}
+
+div.card-img {
+    position:relative;
+    border:1px dashed red;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    width: 100%;
+    height: 200px;
+}
+div.card-img img {
+    flex-shrink:0;
+    min-width:100%;
+    min-height:100%
 }
 
 .search form input[type='search']{
