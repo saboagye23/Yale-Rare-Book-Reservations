@@ -4,10 +4,12 @@ const { Reservation, Book } = require('../../models');
 const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes/'
 
 router.get('/', (req, res) => {
-    if(req.query.id){
+    if (req.session.viewer === undefined){
+        res.redirect('/'); 
+    }else if(req.query.id){
         Book.findOne({
             where: {
-                id: req.params.id
+                id: req.query.id
             },
             attributes: ['id', 'title', 'description', 'url', 'image_link', 'author', 'published_date']
         })
