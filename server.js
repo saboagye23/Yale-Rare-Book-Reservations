@@ -19,8 +19,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // view handler
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine('hbs', exphbs({
+  extname: 'hbs',
+  defaultView: 'main',
+  layoutsDir: __dirname + '/views/layouts/',
+  partialsDir: __dirname + '/views/partials/'
+}));
+app.set('view engine', 'hbs');
 
 // public assets directory
 app.use(express.static(path.join(__dirname, 'public'), {extensions: ['html'], index: false}));

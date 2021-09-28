@@ -1,3 +1,36 @@
-*{
-    box-sizing: content-box;
+ 
+nav{
+    background-color: rgb(185, 233, 240);
+}
+
+a.nav-brand, a.nav-brand:visited{
+    text-decoration: none;
+    color: #000;
+}
+
+.books .card,
+.sidebar{
+    width: 95%;
+    margin: auto;
+}
+
+.search form input[type='search']{
+    display: inline-block;
+    width: 60%;
+}
+
+.search form{
+    min-width: 300px;
+}
+
+@media only screen and (min-width: 768px) {
+    .search form{
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .search form{
+        width: 100%;
+    }
 }

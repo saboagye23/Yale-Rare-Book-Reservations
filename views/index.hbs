@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-9">
+        {{#if searchTerm}}
+            <h5>Books Related to : {{searchTerm}}</h5>
+        {{/if}}
+        <div class="row books">
+            {{#each books}}
+                <div class="col-md-3 mb-4">
+                    {{>bookcard book=this}}
+                </div>
+            {{/each}}
+        </div> 
+    </div>
+    <div class="col-md-3">
+        {{>sidebar books=books}}
+    </div>
+</div>
