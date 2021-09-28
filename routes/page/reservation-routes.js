@@ -5,6 +5,7 @@ const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes/'
 
 router.get('/', (req, res) => {
     if (req.session.viewer === undefined){
+        req.session.message = 'Login to reserve books';
         res.redirect('/'); 
     }else if(req.query.id){
         Book.findOne({
@@ -18,15 +19,16 @@ router.get('/', (req, res) => {
             req.session.book = {
                 db: b
             }
-            res.render('index', {
+            res.render('reservation', {
                 calendarYaer: new Date().getFullYear(),
                 book: b,
-                reservedBooks: []
+                reservedBooks: [],
+                viewer: req.session.viewer
             });
         })
         .catch(err => {
             console.log(err);
-            res.render('reservation', {
+            res.render('index', {
                 error: 'Oops! Could not fin your book :). Try again',
                 exception: err
             });
@@ -50,7 +52,8 @@ router.get('/', (req, res) => {
             res.render('reservation', {
                 calendarYaer: new Date().getFullYear(),
                 book: book,
-                reservedBooks: []
+                reservedBooks: [],
+                viewer: req.session.viewer
             });
         }).catch(err => {
             console.log(err);

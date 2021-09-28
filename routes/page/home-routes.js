@@ -4,6 +4,8 @@ const { Book } = require('../../models');
 const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes?q='
 
 router.get('/', (req, res)=>{
+    const message = req.session.message || ''
+    req.session.message = undefined
     Book.findAll({
         attributes: ['id', 'title', 'description', 'url', 'image_link', 'author', 'published_date']
     })
@@ -19,7 +21,9 @@ router.get('/', (req, res)=>{
         res.render('index', {
             books: books,
             showReserve: true,
-            reservedBooks: []
+            reservedBooks: [],
+            viewer: req.session.viewer,
+            message: message
         });
     })
     .catch(err => {
@@ -33,6 +37,11 @@ router.get('/', (req, res)=>{
 
 router.get('/search', (req, res)=>{
     const q = req.query.q
+    if (q== undefined || q.trim() === ''){
+        res.render('index', {
+            message: 'Enter a book title or description to search'
+        });
+    }
     axios.get(GOOGLE_BOOK_API + q).then(response=>{ 
         books=[];
         response.data.items.forEach(b=>{
@@ -52,14 +61,15 @@ router.get('/search', (req, res)=>{
             searchTerm: q,
             books: books,
             showReserve: 'true',
-            reservedBooks: []
+            reservedBooks: [],
+            viewer: req.session.viewer
         });
     }).catch(err => {
         console.log(err);
         res.render('index', {
             error: 'Oops! Could not fin your book :). Try again',
             exception: err
-        })
+        });
     });
 });
 module.exports = router;

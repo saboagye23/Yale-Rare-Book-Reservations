@@ -41,10 +41,7 @@ router.get('/logout', (req, res) => {
     req.session.regenerate(function(err) {
         // will have a new session here
         res.status(200).json({message:'User logout!'});
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    })
 });
 
 // create a user

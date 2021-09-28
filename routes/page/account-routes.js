@@ -82,9 +82,6 @@ router.get('/logout', (req, res)=>{
     req.session.regenerate(function(err) {
         // will have a new session here
         res.redirect('/');
-    }).catch(err => {
-        console.log(err);
-        res.redirect('/');
     });
 })
 

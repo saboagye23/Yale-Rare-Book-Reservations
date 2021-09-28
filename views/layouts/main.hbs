@@ -18,25 +18,32 @@
                 <ul class="navbar-nav">
                     {{#if (isLogin viewer)}}
                         <li class="nav-item">
+                            <a class="nav-link" href="/account/logout">Logout</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/account/login">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/account/signup">SignUp</a>
-                        </li>
-                    {{else}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/account/logout">Logout</a>
-                        </li>
+                        </li> 
                     {{/if}}
                 </ul> 
              {{>search}} 
         </div>
     </nav>
     <main>
-        <div class="container">
-            <p>{{error}}</p>
-            <p>{{exception}}</p>
-
+        <div class="container  mt-3">
+            {{#if error}}
+                <div class="alert alert-danger" role="alert">
+                    <p>{{error}}</p> 
+                </div>
+            {{/if}}
+            {{#if message}}
+                <div class="alert alert-info" role="alert">
+                    <p>{{message}}</p>
+                </div>
+            {{/if}}
             {{{body}}}
         </div> 
     </main> 
