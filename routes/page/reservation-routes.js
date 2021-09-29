@@ -7,11 +7,12 @@ const { Reservation, Book } = require('../../models');
 const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes/'
 
 router.get('/', async (req, res) => {
+    const reservedBooks = await QueryHelper.get_reserved_books(req);
     if (req.session.viewer === undefined){
         req.session.message = 'Login to reserve books';
         res.redirect('/'); 
     }else if(req.query.id){
-        const reservedBooks = await QueryHelper.get_reserved_books(req);
+        
         Book.findOne({
             where: {
                 id: req.query.id
