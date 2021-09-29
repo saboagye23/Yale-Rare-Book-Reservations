@@ -64,8 +64,7 @@
   html {
     height: 100%;
     background: #003567;
-    color: #ffffff;
-    font-size: 13px;
+    color: #ffffff; 
     font-family: 'Lato', sans-serif;
     font-weight: 400;
   }
