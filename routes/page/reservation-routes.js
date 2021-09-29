@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     const message = req.session.message
     const error = req.session.error
     req.session.message = undefined
+    req.session.error = undefined
     console.log(req.query)
     if (req.session.viewer === undefined){
         req.session.message = 'Login to reserve books';
