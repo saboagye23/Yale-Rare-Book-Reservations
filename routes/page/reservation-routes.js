@@ -8,6 +8,10 @@ const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes/'
 
 router.get('/', async (req, res) => {
     const reservedBooks = await QueryHelper.get_reserved_books(req);
+    const message = req.session.message
+    const error = req.session.error
+    req.session.message = undefined
+    console.log(req.query)
     if (req.session.viewer === undefined){
         req.session.message = 'Login to reserve books';
         res.redirect('/'); 
@@ -15,18 +19,23 @@ router.get('/', async (req, res) => {
         
         Book.findOne({
             where: {
-                id: req.query.id
+                [or]: {
+                    id: req.query.id || null,
+                    search_id: req.query.q || null
+                }
             },
             attributes: ['id', 'title', 'description', 'url', 'image_link', 'author', 'published_date', 'search_id']
         })
         .then(bookData => {
-            const b = bookData.dataValues
+            const b = bookData?.dataValues;
             req.session.reserve_book = b
             res.render('reservation', {
                 calendarYaer: new Date().getFullYear(),
                 book: b,
                 reservedBooks: reservedBooks,
-                viewer: req.session.viewer
+                viewer: req.session.viewer,
+                message: message,
+                error:error
             });
         })
         .catch(err => {
@@ -40,6 +49,7 @@ router.get('/', async (req, res) => {
     }else if(req.query.q){
         axios.get(GOOGLE_BOOK_API + req.query.q).then(response=>{ 
             const b = response.data; 
+            console.log(b);
             book = {
                 id: req.query.id,
                 search_id: req.query.q,
@@ -57,7 +67,9 @@ router.get('/', async (req, res) => {
                 calendarYaer: new Date().getFullYear(),
                 book: book,
                 reservedBooks: reservedBooks,
-                viewer: req.session.viewer
+                viewer: req.session.viewer,
+                message: message,
+                error:error
             });
         }).catch(err => {
             console.log(err);
@@ -66,6 +78,12 @@ router.get('/', async (req, res) => {
                 error: 'Oops! Could not fin your book :). Try again',
                 exception: err
             });
+        });
+    }else {
+        res.render('index', {
+            reservedBooks: reservedBooks,
+            error: 'Oops! Could not fin your book :). Try again',
+            exception: err
         });
     }
 });
@@ -119,18 +137,15 @@ router.post('/add-book', async (req, res) =>{
                     res.redirect('/');
                 }).catch(err=>{
                     console.error(err);
+                    req.session.error = 'Invalid reservation date';
+                    res.redirect(`/reservation?id=${reserve_book.id}id&q=${reserve_book.search_id}`);
                 }); 
                 
             }).catch( async (err)=>{
                 console.error(err);
-                const reservedBooks = await QueryHelper.get_reserved_books(req);
-                res.render('reservation', {
-                    calendarYaer: new Date().getFullYear(),
-                    book: reserve_book,
-                    reservedBooks: reservedBooks,
-                    viewer: req.session.viewer,
-                    error: 'Oops! Could not create book :). Try again'
-                });
+                // no books found to reserve, return to index page for user to select a book
+                req.session.error = 'Can not create book. Ensure book has title Try again';
+                res.redirect(`/reservation?id=${reserve_book.id}id&q=${reserve_book.search_id}`);
             });
             
             return;
@@ -138,8 +153,8 @@ router.post('/add-book', async (req, res) =>{
     }
 
     // no books found to reserve, return to index page for user to select a book
-    req.session.message = 'Invalid reservation date or book not found';
-    res.redirect(`/reservations?id=${reserve_book.id}id&search_id=${reserve_book.search_id}`);
+    req.session.error = 'Invalid reservation date or book not found';
+    res.redirect(`/reservation?id=${reserve_book.id}id&q=${reserve_book.search_id}`);
 });
 
 module.exports = router;
