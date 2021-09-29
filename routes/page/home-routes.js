@@ -5,8 +5,10 @@ const { Book, Reservation, User } = require('../../models');
 const GOOGLE_BOOK_API = 'https://www.googleapis.com/books/v1/volumes?q='
 
 router.get('/', async (req, res)=>{
-    const message = req.session.message || ''
-    req.session.message = undefined
+    const message = req.session.message;
+    const error = req.session.error
+    req.session.message = undefined;
+    req.session.error = undefined;
     const reservedBooks = await QueryHelper.get_reserved_books(req);
     Book.findAll({
         attributes: ['id', 'title', 'description', 'url', 'image_link', 'search_id', 'author', 'published_date']
@@ -25,7 +27,8 @@ router.get('/', async (req, res)=>{
             showReserve: true,
             reservedBooks: reservedBooks,
             viewer: req.session.viewer,
-            message: message
+            message: message,
+            error:error
         });
     })
     .catch(err => {
