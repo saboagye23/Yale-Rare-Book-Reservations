@@ -49,18 +49,20 @@ router.get('/search', async (req, res)=>{
 
     axios.get(GOOGLE_BOOK_API + q).then(response=>{ 
         books=[];
-        response.data.items.forEach(b=>{
-            books.push({
-                id: null,
-                search_id: b.id,
-                title: b.volumeInfo.title,
-                description: b.volumeInfo.description,
-                image_link: b.volumeInfo.imageLinks ? b.volumeInfo.imageLinks.thumbnail: '',
-                url: b.volumeInfo.infoLink || b.volumeInfo.canonicalVolumeLink,
-                published_date: b.volumeInfo.publihedDate,
-                showReserve:true
-            })
-        })
+        if(response.data && response.data.items){
+            response.data.items.forEach(b=>{
+                books.push({
+                    id: null,
+                    search_id: b.id,
+                    title: b.volumeInfo.title,
+                    description: b.volumeInfo.description,
+                    image_link: b.volumeInfo.imageLinks ? b.volumeInfo.imageLinks.thumbnail: '',
+                    url: b.volumeInfo.infoLink || b.volumeInfo.canonicalVolumeLink,
+                    published_date: b.volumeInfo.publihedDate,
+                    showReserve:true
+                });
+            });
+        }
        
         res.render('index', {
             searchTerm: q,
