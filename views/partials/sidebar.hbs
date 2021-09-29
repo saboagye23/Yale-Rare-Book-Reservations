@@ -1,6 +1,18 @@
 <aside class="sidebar">
    <h4>My Reserved Books</h4>
-   {{#each books}}
-        <p>{{this.title}}</p>
+   <ul class="list-group">
+   {{#each reservedBooks}} 
+        <li class="list-group-item reservation">
+           <a href="{{this.book.dataValues.url}}" target="_blank" title="{{this.book.dataValues.title}}">
+            <h5>
+               {{this.book.dataValues.title}}
+            </h5>
+            <p>Reserved on: {{this.start_date}}</p> 
+            <div class="card-img">
+               <img src="{{this.book.dataValues.image_link}}" />
+            </div>
+           </a>
+        </li>
    {{/each}}
+</ul>
 </aside>

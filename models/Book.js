@@ -17,22 +17,22 @@ Book.init(
         autoIncrement: true
       },
       title: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true
       },
       url: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
         validate:{
           isUrl: true,
         }
       },
       image_link: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true
       },
       stock: {
@@ -48,6 +48,10 @@ Book.init(
         allowNull: true
       },
       author:{
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      search_id: {
         type: DataTypes.STRING,
         allowNull: true
       }

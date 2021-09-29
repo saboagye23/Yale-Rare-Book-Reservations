@@ -18,6 +18,7 @@ Reservation.init(
       },
       user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'user',
           key: 'id'
@@ -25,6 +26,7 @@ Reservation.init(
       },
       book_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'book',
           key: 'id'
@@ -35,19 +37,23 @@ Reservation.init(
         allowNull: true
       },
       start_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
-        defaultValue: Sequelize.fn('NOW'),
+        defaultValue: Sequelize.DATEONLY,
         validate:{
-          isAfter: Sequelize.fn('NOW')
+          isAfter: Sequelize.fn('DATEONLY')
         }
       },
       end_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate:{
-          isAfter: Sequelize.fn('NOW')
+          isAfter: Sequelize.fn('DATEONLY')
         }
+      },
+      notes: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     },
     {

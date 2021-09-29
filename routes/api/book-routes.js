@@ -7,7 +7,7 @@ const { Book } = require('../../models');
 router.get('/', (req, res) => {
     // find all books
     Book.findAll({
-      attributes: ['id', 'title', 'description', 'url', 'image_link', 'author', 'published_date']
+      attributes: ['id', 'title', 'description', 'url', 'image_link', 'search_id', 'author', 'published_date']
     })
     .then(bookData => res.json(bookData))
     .catch(err => {
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'title', 'description', 'url', 'image_link', 'author', 'published_date']
+        attributes: ['id', 'title', 'description', 'url', 'image_link', 'search_id', 'author', 'published_date']
     })
     .then(bookData => res.json(bookData))
     .catch(err => {

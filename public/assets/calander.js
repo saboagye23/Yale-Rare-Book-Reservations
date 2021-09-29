@@ -82,6 +82,8 @@ closeBtn.on("click", function() {
   winCreator.removeClass("isVisible");
   $("body").removeClass("overlay");
 });
+
+/*
 saveBtn.on("click", function() {
   var inputName = $("input[name=name]").val();
   var inputDate = $("input[name=date]").val();
@@ -109,7 +111,12 @@ saveBtn.on("click", function() {
   winCreator.removeClass("isVisible");
   $("body").removeClass("overlay");
   $("#addBook")[0].reset();
+
+  console.log('inputDate', inputDate);
+  console.log('inputNotes',inputNotes);
+  console.log('inputTag', inputTag);
 });
+*/
 
 //fill sidebar event info
 function fillEventSidebar(self) {

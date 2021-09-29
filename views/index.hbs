@@ -5,13 +5,13 @@
         {{/if}}
         <div class="row books">
             {{#each books}}
-                <div class="col-md-3 mb-4">
+                <div class="col-md-4 mb-4">
                     {{>bookcard book=this}}
                 </div>
             {{/each}}
         </div> 
     </div>
-    <div class="col-md-3">
-        {{>sidebar books=reservedBooks}}
+    <div class="col-md-3 sidebar-col">
+        {{>sidebar}}
     </div>
 </div>
