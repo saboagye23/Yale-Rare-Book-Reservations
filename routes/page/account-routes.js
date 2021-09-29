@@ -20,11 +20,13 @@ router.post('/login', (req, res)=>{
         where: {
             email: req.body.email
         },
-        attributes: ['password_hash']
+        attributes: ['id', 'email', 'password_hash']
     })
     .then(userData => {
         if(!userData){
-            res.json({message: 'Username or Passowrd is wrong! Try creating a new account'})
+            res.render('login', {
+                acct_msg: 'Username or Passowrd is wrong! <a href="/account/signup">Try creating a new account</a>'
+            });
             return
         }
         bcrypt.compare(req.body.password, userData.password_hash, function(err, result) {
@@ -33,7 +35,7 @@ router.post('/login', (req, res)=>{
                 res.redirect('/');
             } else {
                 res.render('login', {
-                    message: 'Provide valid email or passowrd'
+                    acct_msg: 'Provide valid email or passowrd'
                 });
             }
         });
@@ -41,7 +43,7 @@ router.post('/login', (req, res)=>{
     .catch(err => {
        console.error(err);
        res.render('login', {
-           message: 'Provide valid email or passowrd'
+        acct_msg: 'Provide valid email or passowrd'
        });
     });
 });
@@ -50,8 +52,7 @@ router.get('/signup', (req, res)=>{
     if (req.session.viewer !== undefined){
         res.redirect('/'); 
     } else {
-        res.render('signup', { 
-        });
+        res.render('signup');
     }
 })
 
@@ -71,7 +72,7 @@ router.post('/signup', (req, res)=>{
         .catch(err => {
             console.error(err);
             res.render('signup', {
-                message: 'Provide valid email or passowrd.'
+                acct_msg: 'Provide valid email or passowrd.'
             });
         });
     });

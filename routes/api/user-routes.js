@@ -54,7 +54,10 @@ router.post('/', (req, res) => {
             password_hash: password_hash,
             full_name: req.body.full_name
         })
-        .then(userData => res.json(userData))
+        .then(userData => {
+            req.session.viewer = userData
+            res.json(userData);
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);

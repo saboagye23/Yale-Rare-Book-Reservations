@@ -148,15 +148,14 @@ function fill_table(month, month_length, indexMonth) {
 
   <div class="c-event__creator c-calendar__style js-event__creator">
     <a href="javascript:;" class="o-btn js-event__close">CLOSE <span class="fa fa-close"></span></a>
-    <form id="addBook" action="/reservation/add-book">
-      <input type="hidden" value="{{book.id}}" name="id"/>
-      <input type="hidden" value="{{book.search_id}}" name="search_id"/>
+    <form id="addBook" method="POST" action="/reservation/add-book">
       <input placeholder="Book name" type="text" name="title" value="{{book.title}}" disabled>
       <input type="date" name="date">
       <textarea placeholder="Notes" name="notes" cols="30" rows="10"></textarea>
+      <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Save</button>
     </form>
     <br>
-    <a href="javascript:;" class="o-btn js-event__save">SAVE <span class="fa fa-save"></span></a>
+    
   </div>
 </div>
 <script src="/assets/calander.js"></script>

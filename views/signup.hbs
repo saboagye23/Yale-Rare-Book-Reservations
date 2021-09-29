@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-6 m-auto">
         <h3 class="mb-5">SignUp To Reserve A Book</h1>
-        {{#if message}}
+        {{#if acct_msg}}
             <div class="alert alert-warning" role="alert">
-                {{message}}
+                {{acct_msg}}
             </div>
         {{/if}}
         <form method="post" action="/account/signup">

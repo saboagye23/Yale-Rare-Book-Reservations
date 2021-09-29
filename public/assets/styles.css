@@ -46,6 +46,10 @@ div.card-img img {
     min-height:100%
 }
 
+.reservation div.card-img{
+    height: 150px;
+}
+
 .search form input[type='search']{
     display: inline-block;
     width: 60%;
@@ -55,9 +59,17 @@ div.card-img img {
     min-width: 300px;
 }
 
+.reservation a{
+    text-decoration: none;
+}
+
 @media only screen and (min-width: 768px) {
     .search form{
         width: 500px;
+    }
+
+    .sidebar-col{
+        border-left: 2px solid rgb(185, 233, 240);
     }
 }
 
