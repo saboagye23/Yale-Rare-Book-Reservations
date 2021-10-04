@@ -71,9 +71,9 @@ If you haven't already, log in to your Heroku account and follow the prompts to 
 
 ![Screenshot2](./public/assets/screenshots/screenshot2.png)
 
-![Screenshot3](./public/assets/screenshots/screenshot3.png)
+![Screenshot3](./public/assets/screenshots/screenshot4.png)
 
-![Screenshot4](./public/assets/screenshots/screenshot4.png)
+![Screenshot4](./public/assets/screenshots/screenshot3.png)
 
 
 
