@@ -67,8 +67,8 @@ If you haven't already, log in to your Heroku account and follow the prompts to 
 4. `git push heroku master`
 
 ## Screenshot
-![Screenshot](Screenshots/Screen Shot 2021-10-03 at 9.28.19 PM.png)
-![Screenshot](Screenshots/Screen Shot 2021-10-03 at 9.29.32 PM.png)
+![Screenshot](Screenshots/screenshot1.png)
+![Screenshot](Screenshots/screeshot2.png)
 
 ## Credits
 Sherol Aboagye
