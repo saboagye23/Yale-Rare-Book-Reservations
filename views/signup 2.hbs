@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6 m-auto">
+        <h3 class="mb-5">SignUp To Reserve A Book</h1>
+        {{#if message}}
+            <div class="alert alert-warning" role="alert">
+                {{message}}
+            </div>
+        {{/if}}
+        <form method="post" action="/account/signup">
+            <div class="mb-3">
+                <label for="fullnameControlInput" class="form-label">Full Name</label>
+                <input type="text" name="full_name" class="form-control form-control-lg" id="fullnameControlInput" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="emailControlInput" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control form-control-lg" id="emailControlInput" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="passwordControlInput" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" id="passwordControlInput" placeholder="">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">SignUp</button>
+            </div>
+        </form>
+    </div>
+</div>
