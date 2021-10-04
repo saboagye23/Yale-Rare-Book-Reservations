@@ -1,5 +1,10 @@
-# Yale Rare Books Reservations
+# Reserve-A-Book
+Website to view available books at library, and reserve books to be picked up from the counter within a few minutes
 
+## User Story
+User logs in and is able to see list of books reserved
+User is able to search for book and reserve a date for pickup
+Upon returning back to main screen, users can see reserved books on side of screen
 
 ## Application Structure
 This is to provide detail explanation of the project structure using MVC pattern.
@@ -61,4 +66,14 @@ If you haven't already, log in to your Heroku account and follow the prompts to 
 3. `git checkout master`
 4. `git push heroku master`
 
+## Screenshot
+![Screenshot](Screenshots/Screen Shot 2021-10-03 at 9.28.19 PM.png)
+![Screenshot](Screenshots/Screen Shot 2021-10-03 at 9.29.32 PM.png)
+
+## Credits
+Sherol Aboagye
+
+## Links
 [Heroku URL](https://yale-rare-book-reservation.herokuapp.com)
+
+[Github Repo](https://github.com/saboagye23/Yale-Rare-Book-Reservations.git)
